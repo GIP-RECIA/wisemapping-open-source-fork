@@ -9,7 +9,7 @@
 
     <bean id="passwordEncoder" class="com.wisemapping.security.DefaultPasswordEncoderFactories" factory-method="createDelegatingPasswordEncoder"/>
 
-    <sec:authentication-manager>
+    <sec:authentication-manager alias="authenticationManager">
         <sec:authentication-provider ref="ldapAuthProvider"/>
     </sec:authentication-manager>
 
