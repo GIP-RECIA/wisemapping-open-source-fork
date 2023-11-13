@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <bean id="passwordEncoder"
+          class="com.wisemapping.security.DefaultPasswordEncoderFactories"
+          factory-method="createDelegatingPasswordEncoder"
+    />
+
+    <sec:http entry-point-ref="casAuthenticationEntryPoint" use-expressions="true">
+        <sec:intercept-url pattern="/" access="isAuthenticated()"/>
+        <sec:custom-filter ref="casAuthenticationFilter" position="CAS_FILTER"/>
+        <sec:custom-filter ref="singleSignOutFilter" before="CAS_FILTER"/>
+    </sec:http>
+
+    <sec:authentication-manager alias="authenticationManager">
+        <sec:authentication-provider ref="casAuthenticationProvider"/>
+    </sec:authentication-manager>
+
+    <bean id="casUserDetailsService"
+          class="com.wisemapping.security.cas.CasUserDetailsService"
+          p:userService-ref="userService"
+    />
+
+    <bean id="serviceProperties"
+          class="org.springframework.security.cas.ServiceProperties"
+          p:service="${app.service.security}"
+          p:sendRenew="false"
+          p:authenticateAllArtifacts="true"
+    />
+
+    <bean id="casAuthenticationProvider"
+          class="org.springframework.security.cas.authentication.CasAuthenticationProvider"
+          p:authenticationUserDetailsService-ref="casUserDetailsService"
+          p:serviceProperties-ref="serviceProperties"
+          p:ticketValidator-ref="cas20ServiceTicketValidator"
+          p:key="casAuthProviderKey"
+    />
+
+    <bean id="sessionStrategy"
+          class="org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy"
+          p:migrateSessionAttributes="false"
+    />
+
+    <bean id="cas20ServiceTicketValidator"
+          class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator"
+    >
+        <constructor-arg value="${security.cas.url.prefix}"/>
+    </bean>
+
+    <bean id="casAuthenticationFilter"
+          class="org.springframework.security.cas.web.CasAuthenticationFilter"
+          p:filterProcessesUrl="/j_spring_cas_security_check"
+          p:authenticationManager-ref="authenticationManager"
+          p:sessionAuthenticationStrategy-ref="sessionStrategy"
+    />
+
+    <bean id="casAuthenticationEntryPoint"
+          class="org.springframework.security.cas.web.CasAuthenticationEntryPoint"
+          p:loginUrl="${security.cas.service.login}"
+          p:serviceProperties-ref="serviceProperties"
+    />
+
+    <bean id="singleSignOutFilter"
+          class="com.wisemapping.security.cas.CustomSingleSignOutFilter"
+          p:casServerUrlPrefix="${security.cas.url.prefix}"
+    />
+
+<!--    <bean id="requestCasGlobalLogoutFilter"-->
+<!--          class="org.springframework.security.web.authentication.logout.LogoutFilter"-->
+<!--          p:filterProcessesUrl="/logout"-->
+<!--    >-->
+<!--        <constructor-arg index="0" value="${security.cas.service.logout}?service=${app.service.home}"/>-->
+<!--        <constructor-arg index="1" value="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>-->
+<!--    </bean>-->
+
+</beans>

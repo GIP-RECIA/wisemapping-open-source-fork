@@ -22,9 +22,10 @@ import org.jetbrains.annotations.NotNull;
 
 public enum AuthenticationType {
     DATABASE('D'),
+    CAS('C'),
     LDAP('L'),
     GOOGLE_OAUTH2('G');
-	
+
     private final char schemaCode;
 
     AuthenticationType(char schemaCode) {
