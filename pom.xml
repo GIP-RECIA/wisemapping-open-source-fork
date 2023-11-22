@@ -13,7 +13,7 @@
     </scm>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.wisemapping</groupId>
+    <groupId>fr.recia</groupId>
     <artifactId>wisemapping</artifactId>
     <name>WiseMapping Project</name>
     <version>5.0.21-SNAPSHOT</version>
@@ -142,6 +142,14 @@
             <id>www.wisemapping.org</id>
             <url>scp://www.wisemapping.org/docs/project/</url>
         </site>
+        <repository>
+            <id>esco-releases</id>
+            <url>https://nexus.recia.dev/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>esco-snapshots</id>
+            <url>https://nexus.recia.dev/content/repositories/snapshots/</url>
+        </snapshotRepository>
     </distributionManagement>
 
     <!-- Module Dependencies -->

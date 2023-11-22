@@ -9,7 +9,7 @@
     <name>WiseMapping Frontend</name>
 
     <parent>
-        <groupId>org.wisemapping</groupId>
+        <groupId>fr.recia</groupId>
         <artifactId>wisemapping</artifactId>
         <relativePath>../pom.xml</relativePath>
         <version>5.0.21-SNAPSHOT</version>
