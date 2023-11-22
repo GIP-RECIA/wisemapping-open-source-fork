@@ -14,9 +14,12 @@
     />
 
     <sec:http entry-point-ref="casAuthenticationEntryPoint" use-expressions="true">
-        <sec:intercept-url pattern="/" access="isAuthenticated()"/>
-        <sec:custom-filter ref="casAuthenticationFilter" position="CAS_FILTER"/>
+        <sec:intercept-url pattern="/" access="isAuthenticated() and hasRole('ROLE_USER')"/>
+        <sec:custom-filter ref="requestCasGlobalLogoutFilter" before="LOGOUT_FILTER"/>
         <sec:custom-filter ref="singleSignOutFilter" before="CAS_FILTER"/>
+        <sec:custom-filter ref="casAuthenticationFilter" position="CAS_FILTER"/>
+        <sec:logout invalidate-session="true" delete-cookies="JSESSIONID" />
+        <sec:csrf disabled="true"/>
     </sec:http>
 
     <sec:authentication-manager alias="authenticationManager">
@@ -72,12 +75,14 @@
           p:casServerUrlPrefix="${security.cas.url.prefix}"
     />
 
-<!--    <bean id="requestCasGlobalLogoutFilter"-->
-<!--          class="org.springframework.security.web.authentication.logout.LogoutFilter"-->
-<!--          p:filterProcessesUrl="/logout"-->
-<!--    >-->
-<!--        <constructor-arg index="0" value="${security.cas.service.logout}?service=${app.service.home}"/>-->
-<!--        <constructor-arg index="1" value="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>-->
-<!--    </bean>-->
+    <bean id="requestCasGlobalLogoutFilter"
+          class="org.springframework.security.web.authentication.logout.LogoutFilter"
+          p:filterProcessesUrl="/logout"
+    >
+        <constructor-arg value="${security.cas.service.logout}?service=${app.service.home}"/>
+        <constructor-arg>
+            <bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
+        </constructor-arg>
+    </bean>
 
 </beans>
