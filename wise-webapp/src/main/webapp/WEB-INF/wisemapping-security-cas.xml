@@ -14,7 +14,7 @@
     />
 
     <sec:http entry-point-ref="casAuthenticationEntryPoint" use-expressions="true">
-        <sec:intercept-url pattern="/" access="isAuthenticated() and hasRole('ROLE_USER')"/>
+        <sec:intercept-url pattern="/**" access="isAuthenticated() and hasRole('ROLE_USER')"/>
         <sec:custom-filter ref="requestCasGlobalLogoutFilter" before="LOGOUT_FILTER"/>
         <sec:custom-filter ref="singleSignOutFilter" before="CAS_FILTER"/>
         <sec:custom-filter ref="casAuthenticationFilter" position="CAS_FILTER"/>
