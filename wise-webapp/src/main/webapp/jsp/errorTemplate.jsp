@@ -25,11 +25,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <base href="${requestScope['site.baseurl']}/static/mindplot/">
     <title><spring:message code="SITE.TITLE"/> - <c:out value="${mindmap.title}"/></title>
-    <link rel="stylesheet" href="../../css/error.css"/>
+    <link rel="stylesheet" href="css/error.css"/>
     <%@ include file="/jsp/pageHeaders.jsf" %>
 
 </head>
 <body>
+<%@ include file="/jsp/extendedUportalHeader.jsf" %>
+<main>
 <div id="errorContainer">
     <div class='col'>
         <h1>Oops !</h1>
@@ -41,12 +43,14 @@
         </p>
     </div>
      <div class='column'>
-        <a href="https://www.wisemapping.com">
-            <img src="/images/logo-icon.svg" alt="Wisemapping icon" id="icon" />
+        <a href="${requestScope['site.homepage']}">
+            <img src="images/logo-icon.svg" alt="Wisemapping icon" id="icon" />
         </a>
     </div>
 </div>
 <div id="bottom-logo"></div>
+</main>
+<%@ include file="/jsp/extendedUportalFooter.jsf" %>
 </body>
 </html>
 

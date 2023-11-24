@@ -1,3 +1,18 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    min-width: 100vw;
+    min-height: 100vh;
+    margin: 0px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+body > main {
+    flex-grow: 1;
+}
+
 div#errorContainer {
     font-family:Helvetica;
     display: flex;
@@ -26,8 +41,8 @@ p {
 div#bottom-logo {
     position: fixed;
     right: 20px;
-    bottom: 10px;
-    background: url(../../images/logo-text-black.svg) no-repeat;
+    bottom: 66px;
+    background: url(../images/logo-text-black.svg) no-repeat;
     width: 90px;
     height: 40px;
 }

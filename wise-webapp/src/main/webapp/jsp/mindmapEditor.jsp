@@ -39,15 +39,37 @@
         var accountEmail = '${principal.email}';
         var mapTitle = '${fn:replace(mindmap.title,'\'','\\\'')}';
     </script>
+
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            min-width: 100vw;
+            min-height: 100vh;
+            margin: 0px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body > main {
+            flex-grow: 1;
+            min-height: 10%;
+        }
+    </style>
 </head>
 
 <body>
+<body>
+<%@ include file="/jsp/extendedUportalHeader.jsf" %>
+<main>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root" class="mindplot-div-container"></div>
     
     <script type="text/javascript" src="${requestScope['site.static.js.url']}/webapp/vendors.bundle.js" crossorigin="anonymous" defer></script>
     <script type="text/javascript" src="${requestScope['site.static.js.url']}/webapp/app.bundle.js" crossorigin="anonymous" defer></script>
-
+</main>
+<%@ include file="/jsp/extendedUportalFooter.jsf" %>
 </body>
 
 </html>

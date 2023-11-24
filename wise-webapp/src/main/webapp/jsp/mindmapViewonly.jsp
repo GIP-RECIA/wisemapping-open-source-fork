@@ -46,23 +46,31 @@
 			min-width: 100vw;
 			min-height: 100vh;
 			margin: 0px;
-		}
+			overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body > main {
+            flex-grow: 1;
+            min-height: 10%;
+        }
 
 		.mindplot-div-container {
 			height: 100%;
 			width: 100%;
 		}
-
 	</style>
-
 </head>
 <body>
-	<div id="root" class="mindplot-div-container">
+<%@ include file="/jsp/extendedUportalHeader.jsf" %>
+<main>
+    <div id="root" class="mindplot-div-container">
         <mindplot-component id="mindmap-comp"/>
     </div>
     <div id="mindplot-tooltips" className="wise-editor"></div>
 
-    <a href="${requestScope['site.homepage']}" target="new" aria-label="WiseMapping Homepage">
+    <a href="${requestScope['site.homepage']}" aria-label="WiseMapping Homepage">
         <div id="footerLogo"></div>
     </a>
 
@@ -88,6 +96,8 @@
             </div>
         </div>
     </div>
+</main>
+<%@ include file="/jsp/extendedUportalFooter.jsf" %>
 
 	<script type="text/javascript">
 		// Hook zoom events ...

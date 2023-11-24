@@ -40,14 +40,35 @@
           window.addEventListener("load", downloadJsAtOnload, false);
       </script>
     </c:if>
+
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            min-width: 100vw;
+            min-height: 100vh;
+            margin: 0px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body > main {
+            flex-grow: 1;
+        }
+    </style>
 </head>
 
 <body>
+<%@ include file="/jsp/extendedUportalHeader.jsf" %>
+<main>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
     <script type="text/javascript" src="${requestScope['site.static.js.url']}/webapp/vendors.bundle.js" crossorigin="anonymous" async></script>
     <script type="text/javascript" src="${requestScope['site.static.js.url']}/webapp/app.bundle.js" crossorigin="anonymous" async></script>
+</main>
+<%@ include file="/jsp/extendedUportalFooter.jsf" %>
 </body>
 
 </html>

@@ -24,7 +24,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import java.net.URI;
 
 public class RequestPropertiesInterceptor implements HandlerInterceptor {
     @Value("${google.analytics.enabled}")
@@ -79,6 +79,7 @@ public class RequestPropertiesInterceptor implements HandlerInterceptor {
             siteUrl = request.getRequestURL().toString().replace(request.getRequestURI(), request.getContextPath());
         }
         request.setAttribute("site.baseurl", siteUrl);
+        request.setAttribute("site.domain", new URI(request.getRequestURL().toString()).getHost());
         return true;
     }
 }

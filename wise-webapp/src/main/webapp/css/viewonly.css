@@ -51,7 +51,7 @@ div#mindplot {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    bottom: 20px;
+    bottom: 74px;
     right: 20px;
     align-items: stretch;
 }
@@ -101,15 +101,15 @@ div#mindplot {
 div#footerLogo {
     position: fixed;
     display: list-item;
-    list-style-image: url(../../images/logo-text-black.svg);
+    list-style-image: url(../images/logo-text-black.svg);
     list-style-position: inside;
     left: 10px;
-    bottom: 10px;
+    bottom: 66px;
 }
 
 div#mapDetails {
     position: fixed;
-    bottom:20px;
+    bottom:74px;
     left: 100px;
     padding-top: 20px;
     font-size: 14px;
