@@ -15,6 +15,7 @@
     <context:annotation-config/>
     <mvc:annotation-driven/>
     <context:property-placeholder location="/WEB-INF/app.properties" ignore-unresolvable="true"/>
+    <context:property-placeholder location="file:${PROJECT_HOME}/wisemapping/wisemapping.properties" ignore-unresolvable="true"/>
 
     <!-- Interceptors Registration -->
     <mvc:interceptors>

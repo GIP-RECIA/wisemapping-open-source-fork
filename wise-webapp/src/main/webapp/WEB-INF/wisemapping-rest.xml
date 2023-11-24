@@ -61,4 +61,5 @@
     </bean>
     <!-- Configuration Bean -->
     <context:property-placeholder location="/WEB-INF/app.properties" ignore-unresolvable="true"/>
+    <context:property-placeholder location="file:${PROJECT_HOME}/wisemapping/wisemapping.properties" ignore-unresolvable="true"/>
 </beans>

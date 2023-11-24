@@ -19,6 +19,7 @@ package com.wisemapping.webmvc;
 
 
 import org.jetbrains.annotations.NotNull;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.ResourcePropertySource;
 import org.springframework.web.context.ConfigurableWebApplicationContext;
@@ -31,7 +32,10 @@ public class ApplicationContextInitializer implements org.springframework.contex
 
     public void initialize(@NotNull ConfigurableWebApplicationContext ctx) {
         try {
-            final Resource resource = new ServletContextResource(Objects.requireNonNull(ctx.getServletContext()), "/WEB-INF/app.properties");
+            Resource resource = new ServletContextResource(Objects.requireNonNull(ctx.getServletContext()), "/WEB-INF/app.properties");
+            if(ctx.getEnvironment().getProperty("PROJECT_HOME") != null){
+                resource = new FileSystemResource("/"+ctx.getEnvironment().getProperty("PROJECT_HOME")+"/wisemapping/wisemapping.properties");
+            }
             final ResourcePropertySource resourcePropertySource = new ResourcePropertySource(resource);
             ctx.getEnvironment().getPropertySources().addFirst(resourcePropertySource);
         } catch (IOException e) {
