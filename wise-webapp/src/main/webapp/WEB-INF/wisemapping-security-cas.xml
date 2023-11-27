@@ -18,7 +18,7 @@
         <sec:custom-filter ref="requestCasGlobalLogoutFilter" before="LOGOUT_FILTER"/>
         <sec:custom-filter ref="singleSignOutFilter" before="CAS_FILTER"/>
         <sec:custom-filter ref="casAuthenticationFilter" position="CAS_FILTER"/>
-        <sec:logout invalidate-session="true" delete-cookies="JSESSIONID" />
+        <sec:logout invalidate-session="true" delete-cookies="JSESSIONID"/>
         <sec:csrf disabled="true"/>
     </sec:http>
 

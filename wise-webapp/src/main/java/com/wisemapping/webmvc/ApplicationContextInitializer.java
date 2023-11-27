@@ -36,8 +36,8 @@ public class ApplicationContextInitializer implements org.springframework.contex
             final ResourcePropertySource resourcePropertySourceDefaultConfig = new ResourcePropertySource(ressourceDefaultConfig);
             ctx.getEnvironment().getPropertySources().addFirst(resourcePropertySourceDefaultConfig);
             // Override default config with external config if present
-            if(ctx.getEnvironment().getProperty("PROJECT_HOME") != null){
-                final Resource resourceExternalConfig = new FileSystemResource("/"+ctx.getEnvironment().getProperty("PROJECT_HOME")+"/wisemapping/wisemapping.properties");
+            if (ctx.getEnvironment().getProperty("PROJECT_HOME") != null) {
+                final Resource resourceExternalConfig = new FileSystemResource("/" + ctx.getEnvironment().getProperty("PROJECT_HOME") + "/wisemapping/wisemapping.properties");
                 final ResourcePropertySource resourcePropertySourceExternalConfig = new ResourcePropertySource(resourceExternalConfig);
                 ctx.getEnvironment().getPropertySources().addFirst(resourcePropertySourceExternalConfig);
             }
