@@ -12,6 +12,8 @@
         <property name="allowSemicolon" value="true"/>
     </bean>
 
+    <sec:http pattern="/c/health-check" security="none"/>
+
     <sec:http-firewall ref="custom-firewall"/>
     <sec:http pattern="/static/webapp/**" security="none"/>
     <sec:http pattern="/static/mindplot/**" security="none"/>
