@@ -9,7 +9,10 @@
     </properties>
 
     <scm>
-        <developerConnection>scm:git:git@bitbucket.org:wisemapping/wisemapping-open-source.git</developerConnection>
+        <connection>scm:git:ssh://git@github.com:GIP-RECIA/wisemapping-open-source.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:GIP-RECIA/wisemapping-open-source.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/GIP-RECIA/wisemapping-open-source.git</url>
     </scm>
 
     <modelVersion>4.0.0</modelVersion>
