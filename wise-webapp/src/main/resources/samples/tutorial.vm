@@ -40,8 +40,7 @@
         </topic>
         <topic position="134,92" order="2" text="${messages.getMessage("TUTORIAL.SHARING",$noArgs,$locale)}" id="6" fontStyle=";;#444444;;;" bgColor="#edabff">
             <topic position="253,65" order="0" text="${messages.getMessage("TUTORIAL.INVITE_FRIEND",$noArgs,$locale)}" id="9" fontStyle=";;#444444;;;"/>
-            <topic position="226,92" order="1" text="${messages.getMessage("TUTORIAL.EMBED_IN_BLOGS",$noArgs,$locale)}" id="10" fontStyle=";;#444444;;;"/>
-            <topic position="257,119" order="2" text="${messages.getMessage("TUTORIAL.PUBLISH_YOUR_MAPS",$noArgs,$locale)}" id="15" fontStyle=";;#444444;;;"/>
+            <topic position="257,119" order="1" text="${messages.getMessage("TUTORIAL.PUBLISH_YOUR_MAPS",$noArgs,$locale)}" id="15" fontStyle=";;#444444;;;"/>
         </topic>
         <topic position="-178,71" order="3" text="${messages.getMessage("TUTORIAL.EDITION_USING_MOUSE",$noArgs,$locale)}" id="2" fontStyle=";;#444444;;;"
                bgColor="#d9b518">
