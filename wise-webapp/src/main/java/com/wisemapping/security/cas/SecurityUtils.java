@@ -1,5 +1,7 @@
 package com.wisemapping.security.cas;
 
+import com.wisemapping.service.ServiceUrlHelper;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -8,6 +10,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 
 /**
@@ -40,6 +43,22 @@ public final class SecurityUtils {
     }
 
     /**
+     * Get the User object of the current user.
+     */
+    public static UserDetails getCurrentUserDetails() {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+
+        if (authentication != null) {
+            if (authentication.getPrincipal() instanceof UserDetails) {
+                return (UserDetails) authentication.getPrincipal();
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Check if a user is authenticated.
      *
      * @return true if the user is authenticated, false otherwise
@@ -51,6 +70,14 @@ public final class SecurityUtils {
         return authorities != null
                 && !authorities.equals(AuthorityUtils.NO_AUTHORITIES)
                 && !authorities.contains(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
+    }
+
+    public static String makeDynamicCASServiceUrl(ServiceUrlHelper urlHelper, HttpServletRequest request) {
+        String urlBase = urlHelper.getRootAppUrl(request);
+        for (String url : urlHelper.getAuthorizedDomainNames()) {
+            if (urlBase.startsWith(url)) return urlBase;
+        }
+        throw new AccessDeniedException("The server is unable to authenticate from requested url " + urlBase);
     }
 
 }

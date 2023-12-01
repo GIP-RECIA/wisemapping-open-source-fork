@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
        xmlns:sec="http://www.springframework.org/schema/security"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -15,7 +16,6 @@
 
     <sec:http entry-point-ref="casAuthenticationEntryPoint" use-expressions="true">
         <sec:intercept-url pattern="/**" access="isAuthenticated() and hasRole('ROLE_USER')"/>
-        <sec:custom-filter ref="requestCasGlobalLogoutFilter" before="LOGOUT_FILTER"/>
         <sec:custom-filter ref="singleSignOutFilter" before="CAS_FILTER"/>
         <sec:custom-filter ref="casAuthenticationFilter" position="CAS_FILTER"/>
         <sec:logout invalidate-session="true" delete-cookies="JSESSIONID"/>
@@ -33,23 +33,36 @@
 
     <bean id="serviceProperties"
           class="org.springframework.security.cas.ServiceProperties"
-          p:service="${app.service.security}"
+          p:service="${security.cas.authUriFilterPath}"
           p:sendRenew="false"
           p:authenticateAllArtifacts="true"
     />
 
+    <bean id="serviceUrlHelper"
+          class="com.wisemapping.service.ServiceUrlHelper"
+    >
+        <constructor-arg value="${server.servlet.contextPath}"/>
+        <constructor-arg value="#{'${security.cas.authorizedDomainNames}'.split(',')}"/>
+        <constructor-arg value="${security.cas.protocol}"/>
+        <constructor-arg value="/view/item/"/>
+    </bean>
+
     <bean id="casAuthenticationProvider"
-          class="org.springframework.security.cas.authentication.CasAuthenticationProvider"
+          class="com.wisemapping.security.cas.RememberCasAuthenticationProvider"
           p:authenticationUserDetailsService-ref="casUserDetailsService"
           p:serviceProperties-ref="serviceProperties"
           p:ticketValidator-ref="cas20ServiceTicketValidator"
-          p:key="casAuthProviderKey"
+          p:key="${security.cas.id-key-provider}"
     />
 
     <bean id="sessionStrategy"
-          class="org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy"
+          class="com.wisemapping.security.cas.CustomSessionFixationProtectionStrategy"
           p:migrateSessionAttributes="false"
-    />
+    >
+        <constructor-arg ref="serviceUrlHelper"/>
+        <constructor-arg ref="serviceProperties"/>
+        <constructor-arg value="${security.cas.redirectParamName}"/>
+    </bean>
 
     <bean id="cas20ServiceTicketValidator"
           class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator"
@@ -59,30 +72,22 @@
 
     <bean id="casAuthenticationFilter"
           class="org.springframework.security.cas.web.CasAuthenticationFilter"
-          p:filterProcessesUrl="/j_spring_cas_security_check"
+          p:filterProcessesUrl="/${security.cas.authUriFilterPath}"
           p:authenticationManager-ref="authenticationManager"
           p:sessionAuthenticationStrategy-ref="sessionStrategy"
     />
 
     <bean id="casAuthenticationEntryPoint"
-          class="org.springframework.security.cas.web.CasAuthenticationEntryPoint"
+          class="com.wisemapping.security.cas.RememberCasAuthenticationEntryPoint"
           p:loginUrl="${security.cas.service.login}"
           p:serviceProperties-ref="serviceProperties"
+          p:urlHelper-ref="serviceUrlHelper"
+          p:pathLogin="/"
     />
 
     <bean id="singleSignOutFilter"
           class="com.wisemapping.security.cas.CustomSingleSignOutFilter"
           p:casServerUrlPrefix="${security.cas.url.prefix}"
     />
-
-    <bean id="requestCasGlobalLogoutFilter"
-          class="org.springframework.security.web.authentication.logout.LogoutFilter"
-          p:filterProcessesUrl="/logout"
-    >
-        <constructor-arg value="${security.cas.service.logout}?service=${app.service.home}"/>
-        <constructor-arg>
-            <bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
-        </constructor-arg>
-    </bean>
 
 </beans>
