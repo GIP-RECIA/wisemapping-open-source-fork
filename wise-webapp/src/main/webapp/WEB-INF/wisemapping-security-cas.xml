@@ -70,12 +70,22 @@
         <constructor-arg value="${security.cas.url.prefix}"/>
     </bean>
 
+    <bean id="rememberWebAuthenticationDetailsSource"
+          class="com.wisemapping.security.cas.RememberWebAuthenticationDetailsSource"
+    >
+        <constructor-arg ref="serviceUrlHelper"/>
+        <constructor-arg ref="serviceProperties"/>
+        <constructor-arg value="${security.cas.redirectParamName}"/>
+    </bean>
+
     <bean id="casAuthenticationFilter"
           class="org.springframework.security.cas.web.CasAuthenticationFilter"
           p:filterProcessesUrl="/${security.cas.authUriFilterPath}"
           p:authenticationManager-ref="authenticationManager"
           p:sessionAuthenticationStrategy-ref="sessionStrategy"
-    />
+          p:AuthenticationDetailsSource-ref="rememberWebAuthenticationDetailsSource"
+            >
+    </bean>
 
     <bean id="casAuthenticationEntryPoint"
           class="com.wisemapping.security.cas.RememberCasAuthenticationEntryPoint"
