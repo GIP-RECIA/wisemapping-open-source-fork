@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:util="http://www.springframework.org/schema/util"
        xmlns:sec="http://www.springframework.org/schema/security"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -83,9 +82,8 @@
           p:filterProcessesUrl="/${security.cas.authUriFilterPath}"
           p:authenticationManager-ref="authenticationManager"
           p:sessionAuthenticationStrategy-ref="sessionStrategy"
-          p:AuthenticationDetailsSource-ref="rememberWebAuthenticationDetailsSource"
-            >
-    </bean>
+          p:authenticationDetailsSource-ref="rememberWebAuthenticationDetailsSource"
+    />
 
     <bean id="casAuthenticationEntryPoint"
           class="com.wisemapping.security.cas.RememberCasAuthenticationEntryPoint"
