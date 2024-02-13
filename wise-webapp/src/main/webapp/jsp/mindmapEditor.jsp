@@ -41,20 +41,24 @@
     </script>
 
     <style>
-        body {
-            height: 100vh;
-            width: 100vw;
-            min-width: 100vw;
-            min-height: 100vh;
-            margin: 0px;
+        html {
             overflow: hidden;
+        }
+
+        body {
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
 
         body > main {
             flex-grow: 1;
-            min-height: 10%;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: inherit;
         }
     </style>
 </head>

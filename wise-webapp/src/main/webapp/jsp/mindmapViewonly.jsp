@@ -40,26 +40,35 @@
     </c:if>
 
 	<style>
+	    html {
+            overflow: hidden;
+        }
+
 		body {
-			height: 100vh;
-			width: 100vw;
-			min-width: 100vw;
-			min-height: 100vh;
-			margin: 0px;
-			overflow: hidden;
+		    height: 100vh;
+            width: 100vw;
+            min-width: 100vw;
+            min-height: 100vh;
+            margin: 0px;
             display: flex;
             flex-direction: column;
+			overflow: hidden;
         }
 
         body > main {
             flex-grow: 1;
-            min-height: 10%;
         }
 
 		.mindplot-div-container {
 			height: 100%;
 			width: 100%;
 		}
+
+		footer {
+            position: fixed;
+            bottom: 0;
+            width: inherit;
+        }
 	</style>
 </head>
 <body>
@@ -75,7 +84,6 @@
     </a>
 
     <div id="mapDetails">
-        <span class="title"><spring:message code="CREATOR"/>:</span><span>${mindmap.creator.fullName}</span>
         <span class="title"><spring:message code="DESCRIPTION"/>:</span><span>${mindmap.title}</span>
     </div>
 
