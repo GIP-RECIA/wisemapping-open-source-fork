@@ -1,8 +1,8 @@
-<script src="/commun/extended-uportal-footer.min.js"></script>
+<script src="${requestScope['extendedUportalFooter.componentPath']}"></script>
 
 <footer>
     <extended-uportal-footer
         domain="${requestScope['site.domain']}"
-        template-api-path="/commun/portal_template_api.tpl.json"
+        template-api-path="${requestScope['extendedUportalFooter.templateApiPath']}"
     />
 </footer>
