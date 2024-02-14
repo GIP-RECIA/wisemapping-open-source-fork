@@ -27,8 +27,12 @@ build () {
     cp -r wisemapping-frontend/packages/webapp/README.md wisemapping-open-source/wise-ui/target/wisemapping-webapp/package/README.md
 
     cd wisemapping-open-source
-    mvn install -Dmaven.test.skip=true -Darguments="-DskipTests"
+    buildBack
   fi
+}
+
+buildBack () {
+  mvn install -Dmaven.test.skip=true -Darguments="-DskipTests"
 }
 
 deploy () {
@@ -38,9 +42,10 @@ deploy () {
 
 echo "WiseMapping Building Tool"
 echo ""
-echo "1 -> build only"
-echo "2 -> deploy only"
-echo "3 -> build and deploy"
+echo "1 -> build"
+echo "2 -> build back only"
+echo "3 -> deploy"
+echo "4 -> build and deploy"
 echo ""
 
 read -r -p "Build type: " choice
@@ -52,10 +57,14 @@ case $choice in
   ;;
 
   2)
-    deploy
+    buildBack
   ;;
 
   3)
+    deploy
+  ;;
+
+  4)
     build
     deploy
   ;;
