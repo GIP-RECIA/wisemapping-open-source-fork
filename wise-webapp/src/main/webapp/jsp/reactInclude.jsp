@@ -42,6 +42,10 @@
     </c:if>
 
     <style>
+        html {
+            overflow: hidden;
+        }
+
         body {
             height: 100vh;
             width: 100vw;
@@ -55,6 +59,7 @@
 
         body > main {
             flex-grow: 1;
+            overflow-x: auto;
         }
     </style>
 </head>
