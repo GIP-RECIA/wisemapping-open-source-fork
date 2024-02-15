@@ -36,7 +36,6 @@ buildBack () {
 }
 
 deploy () {
-  cd wise-webapp
   mvn deploy -Dmaven.test.skip=true -Darguments="-DskipTests -Dmaven.deploy.skip=true"
 }
 
