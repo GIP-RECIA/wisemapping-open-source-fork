@@ -1,29 +1,9 @@
-<script src="${requestScope['extendedUportalHeader.componentPath']}"></script>
+<script src="${requestScope['extended-uportal.header.component-path']}"></script>
 
 <header>
     <extended-uportal-header
         domain="${requestScope['site.domain']}"
-        service-name="${requestScope['extendedUportalHeader.serviceName']}"
-        context-api-url="${requestScope['extendedUportalHeader.contextApiUrl']}"
-        sign-out-url="${requestScope['extendedUportalHeader.signOutUrl']}"
-        default-org-logo-path="${requestScope['extendedUportalHeader.defaultOrgLogoPath']}"
-        default-avatar-path="${requestScope['extendedUportalHeader.defaultAvatarPath']}"
-        default-org-icon-path="${requestScope['extendedUportalHeader.defaultOrgIconPath']}"
-        favorite-api-url="${requestScope['extendedUportalHeader.favoriteApiUrl']}"
-        layout-api-url="${requestScope['extendedUportalHeader.layoutApiUrl']}"
-        organization-api-url="${requestScope['extendedUportalHeader.organizationApiUrl']}"
-        portlet-api-url="${requestScope['extendedUportalHeader.portletApiUrl']}"
-        user-info-api-url="${requestScope['extendedUportalHeader.userInfoApiUrl']}"
-        user-info-portlet-url="${requestScope['extendedUportalHeader.userInfoPortletUrl']}"
-        session-api-url="${requestScope['extendedUportalHeader.sessionApiUrl']}"
-        template-api-path="${requestScope['extendedUportalHeader.templateApiPath']}"
-        switch-org-portlet-url="${requestScope['extendedUportalHeader.switchOrgPortletUrl']}"
-        favorites-portlet-card-size="${requestScope['extendedUportalHeader.favoritesPortletCardSize']}"
-        grid-portlet-card-size="${requestScope['extendedUportalHeader.gridPortletCardSize']}"
-        hide-action-mode="${requestScope['extendedUportalHeader.hideActionMode']}"
-        show-favorites-in-slider="${requestScope['extendedUportalHeader.showFavoritesInSlider']}"
-        return-home-title="${requestScope['extendedUportalHeader.returnHomeTitle']}"
-        return-home-target="${requestScope['extendedUportalHeader.returnHomeTarget']}"
-        icon-type="${requestScope['extendedUportalHeader.iconType']}"
+        template-api-path="${requestScope['extended-uportal.header.props.template-api-path']}"
+        fname="${requestScope['extended-uportal.header.props.fname']}"
     />
 </header>

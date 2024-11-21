@@ -36,32 +36,12 @@ security.cas.service.login=
 security.cas.service.logout=
 security.cas.url.prefix=
 
-extendedUportalHeader.componentPath=
-extendedUportalHeader.serviceName=Carte Mentale
-extendedUportalHeader.contextApiUrl=
-extendedUportalHeader.signOutUrl=
-extendedUportalHeader.defaultOrgLogoPath=
-extendedUportalHeader.defaultAvatarPath=
-extendedUportalHeader.defaultOrgIconPath=
-extendedUportalHeader.favoriteApiUrl=
-extendedUportalHeader.layoutApiUrl=
-extendedUportalHeader.organizationApiUrl=
-extendedUportalHeader.portletApiUrl=
-extendedUportalHeader.userInfoApiUrl=
-extendedUportalHeader.userInfoPortletUrl=
-extendedUportalHeader.sessionApiUrl=
-extendedUportalHeader.templateApiPath=
-extendedUportalHeader.switchOrgPortletUrl=
-extendedUportalHeader.favoritesPortletCardSize=small
-extendedUportalHeader.gridPortletCardSize=auto
-extendedUportalHeader.hideActionMode=never
-extendedUportalHeader.showFavoritesInSlider=true
-extendedUportalHeader.returnHomeTitle=Aller à l\'accueil
-extendedUportalHeader.returnHomeTarget=_self
-extendedUportalHeader.iconType=nine-square
+extended-uportal.header.component-path=
+extended-uportal.header.props.template-api-path=
+extended-uportal.header.props.fname=
 
-extendedUportalFooter.componentPath=
-extendedUportalFooter.templateApiPath=
+extended-uportal.footer.component-path=
+extended-uportal.footer.props.template-api-path=
 ```
 
 ## Dev

@@ -60,58 +60,20 @@ public class RequestPropertiesInterceptor implements HandlerInterceptor {
 	@Value("${security.oauth2.google.url}")
     private String googleOauth2Url;
 
-    @Value("${extendedUportalHeader.componentPath}")
+    @Value("${extended-uportal.header.component-path}")
     private String extendedUportalHeaderComponentPath;
-    @Value("${extendedUportalHeader.serviceName}")
-    private String extendedUportalHeaderServiceName;
-    @Value("${extendedUportalHeader.contextApiUrl}")
-    private String extendedUportalHeaderContextApiUrl;
-    @Value("${extendedUportalHeader.signOutUrl}")
-    private String extendedUportalHeaderSignOutUrl;
-    @Value("${extendedUportalHeader.defaultOrgLogoPath}")
-    private String extendedUportalHeaderDefaultOrgLogoPath;
-    @Value("${extendedUportalHeader.defaultAvatarPath}")
-    private String extendedUportalHeaderDefaultAvatarPath;
-    @Value("${extendedUportalHeader.defaultOrgIconPath}")
-    private String extendedUportalHeaderDefaultOrgIconPath;
-    @Value("${extendedUportalHeader.favoriteApiUrl}")
-    private String extendedUportalHeaderFavoriteApiUrl;
-    @Value("${extendedUportalHeader.layoutApiUrl}")
-    private String extendedUportalHeaderLayoutApiUrl;
-    @Value("${extendedUportalHeader.organizationApiUrl}")
-    private String extendedUportalHeaderOrganizationApiUrl;
-    @Value("${extendedUportalHeader.portletApiUrl}")
-    private String extendedUportalHeaderPortletApiUrl;
-    @Value("${extendedUportalHeader.userInfoApiUrl}")
-    private String extendedUportalHeaderUserInfoApiUrl;
-    @Value("${extendedUportalHeader.userInfoPortletUrl}")
-    private String extendedUportalHeaderUserInfoPortletUrl;
-    @Value("${extendedUportalHeader.sessionApiUrl}")
-    private String extendedUportalHeaderSessionApiUrl;
-    @Value("${extendedUportalHeader.templateApiPath}")
-    private String extendedUportalHeaderTemplateApiPath;
-    @Value("${extendedUportalHeader.switchOrgPortletUrl}")
-    private String extendedUportalHeaderSwitchOrgPortletUrl;
-    @Value("${extendedUportalHeader.favoritesPortletCardSize}")
-    private String extendedUportalHeaderFavoritesPortletCardSize;
-    @Value("${extendedUportalHeader.gridPortletCardSize}")
-    private String extendedUportalHeaderGridPortletCardSize;
-    @Value("${extendedUportalHeader.hideActionMode}")
-    private String extendedUportalHeaderHideActionMode;
-    @Value("${extendedUportalHeader.showFavoritesInSlider}")
-    private String extendedUportalHeaderShowFavoritesInSlider;
-    @Value("${extendedUportalHeader.returnHomeTitle}")
-    private String extendedUportalHeaderReturnHomeTitle;
-    @Value("${extendedUportalHeader.returnHomeTarget}")
-    private String extendedUportalHeaderReturnHomeTarget;
-    @Value("${extendedUportalHeader.iconType}")
-    private String extendedUportalHeaderIconType;
 
+    @Value("${extended-uportal.header.props.template-api-path}")
+    private String extendedUportalHeaderPropsTemplateApiPath;
 
-    @Value("${extendedUportalFooter.componentPath}")
+    @Value("${extended-uportal.header.props.fname}")
+    private String extendedUportalHeaderPropsFname;
+
+    @Value("${extended-uportal.footer.component-path}")
     private String extendedUportalFooterComponentPath;
-    @Value("${extendedUportalFooter.templateApiPath}")
-    private String extendedUportalFooterTemplateApiPath;
+
+    @Value("${extended-uportal.footer.props.template-api-path}")
+    private String extendedUportalFooterPropsTemplateApiPath;
 
     @Override
     public boolean preHandle(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, Object object) throws Exception {
@@ -130,32 +92,12 @@ public class RequestPropertiesInterceptor implements HandlerInterceptor {
 
         request.setAttribute("security.type", securityType);
 
-        request.setAttribute("extendedUportalHeader.componentPath", extendedUportalHeaderComponentPath);
-        request.setAttribute("extendedUportalHeader.serviceName", extendedUportalHeaderServiceName);
-        request.setAttribute("extendedUportalHeader.contextApiUrl", extendedUportalHeaderContextApiUrl);
-        request.setAttribute("extendedUportalHeader.signOutUrl", extendedUportalHeaderSignOutUrl);
-        request.setAttribute("extendedUportalHeader.defaultOrgLogoPath", extendedUportalHeaderDefaultOrgLogoPath);
-        request.setAttribute("extendedUportalHeader.defaultAvatarPath", extendedUportalHeaderDefaultAvatarPath);
-        request.setAttribute("extendedUportalHeader.defaultOrgIconPath", extendedUportalHeaderDefaultOrgIconPath);
-        request.setAttribute("extendedUportalHeader.favoriteApiUrl", extendedUportalHeaderFavoriteApiUrl);
-        request.setAttribute("extendedUportalHeader.layoutApiUrl", extendedUportalHeaderLayoutApiUrl);
-        request.setAttribute("extendedUportalHeader.organizationApiUrl", extendedUportalHeaderOrganizationApiUrl);
-        request.setAttribute("extendedUportalHeader.portletApiUrl", extendedUportalHeaderPortletApiUrl);
-        request.setAttribute("extendedUportalHeader.userInfoApiUrl", extendedUportalHeaderUserInfoApiUrl);
-        request.setAttribute("extendedUportalHeader.userInfoPortletUrl", extendedUportalHeaderUserInfoPortletUrl);
-        request.setAttribute("extendedUportalHeader.sessionApiUrl", extendedUportalHeaderSessionApiUrl);
-        request.setAttribute("extendedUportalHeader.templateApiPath", extendedUportalHeaderTemplateApiPath);
-        request.setAttribute("extendedUportalHeader.switchOrgPortletUrl", extendedUportalHeaderSwitchOrgPortletUrl);
-        request.setAttribute("extendedUportalHeader.favoritesPortletCardSize", extendedUportalHeaderFavoritesPortletCardSize);
-        request.setAttribute("extendedUportalHeader.gridPortletCardSize", extendedUportalHeaderGridPortletCardSize);
-        request.setAttribute("extendedUportalHeader.hideActionMode", extendedUportalHeaderHideActionMode);
-        request.setAttribute("extendedUportalHeader.showFavoritesInSlider", extendedUportalHeaderShowFavoritesInSlider);
-        request.setAttribute("extendedUportalHeader.returnHomeTitle", extendedUportalHeaderReturnHomeTitle);
-        request.setAttribute("extendedUportalHeader.returnHomeTarget", extendedUportalHeaderReturnHomeTarget);
-        request.setAttribute("extendedUportalHeader.iconType", extendedUportalHeaderIconType);
+        request.setAttribute("extended-uportal.header.component-path", extendedUportalHeaderComponentPath);
+        request.setAttribute("extended-uportal.header.props.template-api-path", extendedUportalHeaderPropsTemplateApiPath);
+        request.setAttribute("extended-uportal.header.props.fname", extendedUportalHeaderPropsFname);
 
-        request.setAttribute("extendedUportalFooter.componentPath", extendedUportalFooterComponentPath);
-        request.setAttribute("extendedUportalFooter.templateApiPath", extendedUportalFooterTemplateApiPath);
+        request.setAttribute("extended-uportal.footer.component-path", extendedUportalFooterComponentPath);
+        request.setAttribute("extended-uportal.footer.props.template-api-path", extendedUportalFooterPropsTemplateApiPath);
 
         // If the property could not be resolved, try to infer one from the request...
         // Keep baseUrl in memory so it could be forced from the config

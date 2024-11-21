@@ -1,8 +1,8 @@
-<script src="${requestScope['extendedUportalFooter.componentPath']}"></script>
+<script src="${requestScope['extended-uportal.footer.component-path']}"></script>
 
 <footer>
     <extended-uportal-footer
         domain="${requestScope['site.domain']}"
-        template-api-path="${requestScope['extendedUportalFooter.templateApiPath']}"
+        template-api-path="${requestScope['extended-uportal.footer.props.template-api-path']}"
     />
 </footer>
